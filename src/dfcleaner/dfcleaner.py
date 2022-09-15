@@ -3,7 +3,7 @@ import pandas as pd
 
 
 def _rec_slice_str(str1, each):
-
+    
     length = len(str1)
     positions = length - 1
 
