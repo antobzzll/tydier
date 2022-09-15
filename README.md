@@ -1,2 +1,2 @@
-# df-cleaner
-Python library for cleaning and manipulating data
+# dfcleaner
+Python library for cleaning and manipulating data.
