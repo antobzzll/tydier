@@ -2,8 +2,8 @@
 import pandas as pd
 
 # local imports
-from strings import _rec_slice_str
-from strings import str_match_ratio
+from .strings import _rec_slice_str
+from .strings import str_match_ratio
 
 def remove_chars(obj_series: pd.Series, chars: list):
     for c in chars:
