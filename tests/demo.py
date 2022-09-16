@@ -1,5 +1,5 @@
 import pandas as pd
-import dfcleaner.dfcleaner
+import dfcleaner
 
 
 dirty_cats = ['monday', 'Tusday', 'Wednesday', 'thurda', 'Firday', 'saty', 'Sunday']
