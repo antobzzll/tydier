@@ -1,6 +1,7 @@
 # import numpy as np
 import pandas as pd
-
+import prova.strings
+import catvars
 
 def remove_chars(obj_series: pd.Series, chars: list):
     for c in chars:
@@ -60,15 +61,16 @@ def str_match_ratio(str1: str, str2: str, method: str,
         raise ValueError("Invalid method.")
 
 
-def find_inconsistent_categories(series: pd.Series,
-                                 categories: pd.Series,
+def find_inconsistent_categories(dirty_series: pd.Series,
+                                 clean_categories: pd.Series,
                                  mapping_dict: bool = False,
                                  verbose: bool = False):
 
-    diff = list(set(series).difference(categories))
-    if diff:
-        if mapping_dict:
+    diff = list(set(dirty_series).difference(clean_categories))
 
+    if diff:
+
+        if mapping_dict:
             mapping = {}
 
             for tofix in diff:
@@ -78,23 +80,26 @@ def find_inconsistent_categories(series: pd.Series,
                 match_ratio_common_ls = []
                 match_ratio_sliceeach_ls = []
 
-                for cat in categories:
+                for cat in clean_categories:
                     tofix_ls.append(tofix)
                     cat_ls.append(cat)
-                    match_ratio_charbychar_ls.append(str_match_ratio(tofix, cat,
-                                                                    case_sensitive=False,
-                                                                    method='charbychar'))
-                    match_ratio_common_ls.append(str_match_ratio(tofix, cat,
-                                                                case_sensitive=False,
-                                                                method='commonchars'))
-                    match_ratio_sliceeach_ls.append(str_match_ratio(tofix, cat,
-                                                                    case_sensitive=False,
-                                                                    method='sliceeach2'))
+                    match_ratio_charbychar_ls.append(
+                        str_match_ratio(tofix, cat, case_sensitive=False,
+                                        method='charbychar'))
 
-                res = pd.DataFrame({'tofix': tofix_ls, 'cat': cat_ls,
-                                    'match_ratio_charbychar': match_ratio_charbychar_ls,
-                                    'match_ratio_common': match_ratio_common_ls,
-                                    'match_ratio_sliceeach': match_ratio_sliceeach_ls})
+                    match_ratio_common_ls.append(
+                        str_match_ratio(tofix, cat, case_sensitive=False,
+                                        method='commonchars'))
+
+                    match_ratio_sliceeach_ls.append(
+                        str_match_ratio(tofix, cat, case_sensitive=False,
+                                        method='sliceeach2'))
+
+                res = pd.DataFrame(
+                    {'tofix': tofix_ls, 'cat': cat_ls,
+                     'match_ratio_charbychar': match_ratio_charbychar_ls,
+                     'match_ratio_common': match_ratio_common_ls,
+                     'match_ratio_sliceeach': match_ratio_sliceeach_ls})
 
                 res['match_ratio'] = res['match_ratio_charbychar'] + \
                     res['match_ratio_sliceeach'] + res['match_ratio_common']
@@ -106,35 +111,16 @@ def find_inconsistent_categories(series: pd.Series,
 
                 max_ratio = res['match_ratio'].max()
                 replacement = res.loc[res['match_ratio']
-                                    == max_ratio]['cat'].item()
+                                      == max_ratio]['cat'].item()
 
                 mapping[tofix] = replacement
 
-            return mapping
-        return diff
+            return mapping  # if mapping
+        else:
+            return diff
 
     else:
         return None
 
 
-def _rec_slice_str(str1, each):  # used for str_match_ratio sliceeach
-    length = len(str1)
-    positions = length - 1
 
-    if each > length:
-        raise ValueError(f"Invalid each number. Max allowed for provided "
-                         f"string is {length}")
-    if each < 2:
-        raise ValueError(f"Invalid each number. Min allowed is 2")
-
-    start = 0
-    end = each
-    res = list()
-    for _ in range(positions):
-        chunk = str1[start:end]
-        if len(chunk) == each:
-            res.append(chunk)
-            start += 1
-            end += 1
-
-    return res
