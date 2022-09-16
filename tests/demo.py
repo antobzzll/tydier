@@ -9,7 +9,8 @@ if __name__ == "__main__":
                              'Friday', 'Saturday', 'Sunday']})
 
     dirty_cats = ['Monday', 'Tusday', 'Wednesday',
-                  'Thursdy', 'Friday', 'Satday', 'Sunday', 'mnday']
+                  'Thursdy', 'Friday', 'Staday', 'Sunday', 'mnday', 'tseday', 'day']
+
     clean_cats = ['Monday', 'Tuesday', 'Wednesday',
                   'Thursday', 'Friday', 'Saturday', 'Sunday']
 
@@ -33,4 +34,4 @@ if __name__ == "__main__":
 
     print(f"\n{'*' * 5} dfcleaner.find_inconsistent_categories")
     print(dfcleaner.find_inconsistent_categories(dirty_cats, clean_cats,
-                                                 mapping_dict=True))
+                                                 mapping_dict=True, verbose=True))

@@ -2,6 +2,12 @@
 import pandas as pd
 
 
+def remove_chars(obj_series: pd.Series, chars: list):
+    for c in chars:
+        obj_series = obj_series.str.replace(c, '')
+    return obj_series
+
+
 def str_match_ratio(str1: str, str2: str, method: str,
                     case_sensitive: bool = False):
 
@@ -38,6 +44,7 @@ def str_match_ratio(str1: str, str2: str, method: str,
             each = int(method[-1])
         except ValueError:
             raise ValueError("Invalid method.")
+
         grouped1 = _rec_slice_str(str1, each)
         grouped2 = _rec_slice_str(str2, each)
         longest = grouped1 if grouped1 > grouped2 else grouped2
@@ -53,95 +60,64 @@ def str_match_ratio(str1: str, str2: str, method: str,
         raise ValueError("Invalid method.")
 
 
-def remove_chars(obj_series: pd.Series, chars: list):
-    """Removes a list of chars from a pandas object series.
-
-    Args:
-        obj_series (pd.Series): Target pd.Series
-        chars (list): Chars to be removed
-
-    Returns:
-        pd.Series: Cleaned object series
-    """
-    for c in chars:
-        obj_series = obj_series.str.replace(c, '')
-    return obj_series
-
-
 def find_inconsistent_categories(series: pd.Series,
                                  categories: pd.Series,
-                                 mapping_dict: bool = False):
-    """Spots incorrect categories in a categorical variable, by checking it
-    against a correct set of pre-defined categories.
+                                 mapping_dict: bool = False,
+                                 verbose: bool = False):
 
-    Args:
-        series (pd.Series): Column of categories to check against the 
-                            default ones.
-        categories (pd.Series): Default (permitted) categories.
-        print_mapping_dict (bool): Prepares and prints a mapping dictionary 
-                            string to use with pd.Series.str.replace(mapping). 
-
-    Returns:
-        dict: Set of non-permitted categories
-    """
     diff = list(set(series).difference(categories))
+    if diff:
+        if mapping_dict:
 
-    if mapping_dict:
+            mapping = {}
 
-        mapping = {}
-
-        for tofix in diff:
-            tofix_ls = []
-            cat_ls = []
-            match_ratio_ls = []
-
-            for cat in categories:
-                tofix_ls.append(tofix)
-                cat_ls.append(cat)
-                match_ratio_ls.append(str_match_ratio(tofix, cat,
-                                                      case_sensitive=False,
-                                                      method='sliceeach2'))
-
-            res = pd.DataFrame({'tofix': tofix_ls, 'cat': cat_ls,
-                                'match_ratio': match_ratio_ls})
-
-            max_ratio = res['match_ratio'].max()
-
-            try:
-                replacement = res.loc[res['match_ratio']
-                                      == max_ratio]['cat'].item()
-            except ValueError:  # if replacements are more than 1 ... use 'commonchars'
-                pot_replacements = res.loc[res['match_ratio']
-                                           == max_ratio]['cat'].to_list()
-
+            for tofix in diff:
                 tofix_ls = []
                 cat_ls = []
-                match_ratio_ls = []
+                match_ratio_charbychar_ls = []
+                match_ratio_common_ls = []
+                match_ratio_sliceeach_ls = []
 
-                for rep in pot_replacements:
+                for cat in categories:
                     tofix_ls.append(tofix)
-                    cat_ls.append(rep)
-                    match_ratio_ls.append(str_match_ratio(
-                        rep, tofix, method='commonchars'))
+                    cat_ls.append(cat)
+                    match_ratio_charbychar_ls.append(str_match_ratio(tofix, cat,
+                                                                    case_sensitive=False,
+                                                                    method='charbychar'))
+                    match_ratio_common_ls.append(str_match_ratio(tofix, cat,
+                                                                case_sensitive=False,
+                                                                method='commonchars'))
+                    match_ratio_sliceeach_ls.append(str_match_ratio(tofix, cat,
+                                                                    case_sensitive=False,
+                                                                    method='sliceeach2'))
 
                 res = pd.DataFrame({'tofix': tofix_ls, 'cat': cat_ls,
-                                    'match_ratio': match_ratio_ls})
+                                    'match_ratio_charbychar': match_ratio_charbychar_ls,
+                                    'match_ratio_common': match_ratio_common_ls,
+                                    'match_ratio_sliceeach': match_ratio_sliceeach_ls})
+
+                res['match_ratio'] = res['match_ratio_charbychar'] + \
+                    res['match_ratio_sliceeach'] + res['match_ratio_common']
+
+                if verbose:
+                    print("Categorical variables to fix: ")
+                    print(diff)
+                    print(res)
 
                 max_ratio = res['match_ratio'].max()
-
                 replacement = res.loc[res['match_ratio']
-                                      == max_ratio]['cat'].item()
+                                    == max_ratio]['cat'].item()
 
-            mapping[tofix] = replacement
+                mapping[tofix] = replacement
 
-        return mapping
+            return mapping
+        return diff
 
     else:
-        return diff if diff else False
+        return None
 
 
-def _rec_slice_str(str1, each):
-
+def _rec_slice_str(str1, each):  # used for str_match_ratio sliceeach
     length = len(str1)
     positions = length - 1
 
