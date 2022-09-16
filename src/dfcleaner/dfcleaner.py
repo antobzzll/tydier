@@ -2,30 +2,6 @@
 import pandas as pd
 
 
-def _rec_slice_str(str1, each):
-    
-    length = len(str1)
-    positions = length - 1
-
-    if each > length:
-        raise ValueError(f"Invalid each number. Max allowed for provided "
-                         f"string is {length}")
-    if each < 2:
-        raise ValueError(f"Invalid each number. Min allowed is 2")
-
-    start = 0
-    end = each
-    res = list()
-    for _ in range(positions):
-        chunk = str1[start:end]
-        if len(chunk) == each:
-            res.append(chunk)
-            start += 1
-            end += 1
-
-    return res
-
-
 def str_match_ratio(str1: str, str2: str, method: str,
                     case_sensitive: bool = False):
 
@@ -130,22 +106,59 @@ def find_inconsistent_categories(series: pd.Series,
                                 'match_ratio': match_ratio_ls})
 
             max_ratio = res['match_ratio'].max()
-            print(max_ratio)
-            print(res)
 
             try:
                 replacement = res.loc[res['match_ratio']
                                       == max_ratio]['cat'].item()
-            except ValueError:
+            except ValueError:  # if replacements are more than 1 ... use 'commonchars'
                 pot_replacements = res.loc[res['match_ratio']
                                            == max_ratio]['cat'].to_list()
+
+                tofix_ls = []
+                cat_ls = []
+                match_ratio_ls = []
+
                 for rep in pot_replacements:
-                    print(tofix, rep, str_match_ratio(
+                    tofix_ls.append(tofix)
+                    cat_ls.append(rep)
+                    match_ratio_ls.append(str_match_ratio(
                         rep, tofix, method='commonchars'))
-            print(replacement)
+
+                res = pd.DataFrame({'tofix': tofix_ls, 'cat': cat_ls,
+                                    'match_ratio': match_ratio_ls})
+
+                max_ratio = res['match_ratio'].max()
+
+                replacement = res.loc[res['match_ratio']
+                                      == max_ratio]['cat'].item()
+
             mapping[tofix] = replacement
 
         return mapping
 
     else:
         return diff if diff else False
+
+
+def _rec_slice_str(str1, each):
+
+    length = len(str1)
+    positions = length - 1
+
+    if each > length:
+        raise ValueError(f"Invalid each number. Max allowed for provided "
+                         f"string is {length}")
+    if each < 2:
+        raise ValueError(f"Invalid each number. Min allowed is 2")
+
+    start = 0
+    end = each
+    res = list()
+    for _ in range(positions):
+        chunk = str1[start:end]
+        if len(chunk) == each:
+            res.append(chunk)
+            start += 1
+            end += 1
+
+    return res

@@ -3,12 +3,16 @@ import dfcleaner
 
 if __name__ == "__main__":
 
-    df = pd.DataFrame({'A': ['Monday', 'Tuesday', 'Wdnesday', 'Thursday', 'Friay', 'Saturday', 'Sunday'],
-                       'B': ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']})
+    df = pd.DataFrame({'A': ['Monday', 'Tuesday', 'Wdnesday', 'Thursday',
+                             'Friay', 'Saturday', 'Sunday'],
+                       'B': ['Monday', 'Tuesday', 'Wednesday', 'Thursday',
+                             'Friday', 'Saturday', 'Sunday']})
+
     dirty_cats = ['Monday', 'Tusday', 'Wednesday',
-                  'Thursdy', 'Friday', 'Saturday', 'Sunday', 'mnday']
+                  'Thursdy', 'Friday', 'Satday', 'Sunday', 'mnday']
     clean_cats = ['Monday', 'Tuesday', 'Wednesday',
                   'Thursday', 'Friday', 'Saturday', 'Sunday']
+
     print(dfcleaner.str_match_ratio("Monday", "mnday", method='commonchars'))
 
     print(f"\n{'*' * 5} dfcleaner.str_match_ratio: method = 'charbychar'")
