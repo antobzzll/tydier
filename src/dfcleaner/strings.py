@@ -1,3 +1,8 @@
+def remove_chars(obj_series, chars: list):
+    for c in chars:
+        obj_series = obj_series.str.replace(c, '')
+    return obj_series
+
 
 def str_match_ratio(str1: str, str2: str, method: str,
                     case_sensitive: bool = False):
