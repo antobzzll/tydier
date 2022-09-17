@@ -39,16 +39,17 @@ df['cleaned_dirty_cats'] = df['dirty_cats'].replace(mapping)
 df
 ```
 Result:
-```
-	dirty_cats	clean_cats	cleaned_dirty_cats
-0	monday	    Monday	    Monday
-1	Tusday	    Tuesday	    Tuesday
-2	Wednesday	Wednesday	Wednesday
-3	thurda	    Thursday	Thursday
-4	Firday	    Friday	    Friday
-5	saty	    Saturday	Saturday
-6	Sunday	    Sunday	    Sunday
-```
+
+|dirty_cats	| clean_cats | cleaned_dirty_cats|
+| --- | ---| --- |
+| monday | Monday | Monday|
+| Tusday | Tuesday | Tuesday|
+| Wednesday | Wednesday | Wednesday|
+| thurda | Thursday | Thursday|
+| Firday | Friday | Friday|
+| saty | Saturday | Saturday|
+| Sunday | Sunday | Sunday|
+
 
 ## Contributing
 
