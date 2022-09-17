@@ -2,9 +2,11 @@
 
 Python package for cleaning and manipulating data.
 
-<!-- ## Installation
+## Installation
 
-```bash
+At the moment, `dfcleaner` is still in early development; a first version has not been released yet. Please stay tuned ... or feel free to contribute!
+
+<!-- ```bash
 $ pip install dfcleaner
 ``` -->
 
