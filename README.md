@@ -33,6 +33,22 @@ Result:
  'Tusday': 'Tuesday',
  'saty': 'Saturday'}
 ```
+```python
+mapping = catvars.find_inconsistent_categories(dirty_cats, clean_cats, mapping_dict=True)
+df['cleaned_dirty_cats'] = df['dirty_cats'].replace(mapping)
+df
+```
+Result:
+```
+	dirty_cats	clean_cats	cleaned_dirty_cats
+0	monday	    Monday	    Monday
+1	Tusday	    Tuesday	    Tuesday
+2	Wednesday	Wednesday	Wednesday
+3	thurda	    Thursday	Thursday
+4	Firday	    Friday	    Friday
+5	saty	    Saturday	Saturday
+6	Sunday	    Sunday	    Sunday
+```
 
 ## Contributing
 
