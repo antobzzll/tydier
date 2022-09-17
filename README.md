@@ -2,11 +2,11 @@
 
 Python package for cleaning and manipulating data.
 
-## Installation
+<!-- ## Installation
 
 ```bash
 $ pip install dfcleaner
-```
+``` -->
 
 ## Usage
 
