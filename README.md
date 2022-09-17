@@ -32,7 +32,7 @@ catvars.find_inconsistent_categories(dirty_cats, clean_cats, mapping_dict=True)
  'Tusday': 'Tuesday',
  'saty': 'Saturday'}
 ```
-Passing it to `pd.Series.replace()` to automatically replace inconsistent values with the correct predefined ones.
+Passing it to `pd.Series.replace()` to automatically replace inconsistent values with the correct predefined ones:
 ```python
 mapping = catvars.find_inconsistent_categories(dirty_cats, clean_cats, mapping_dict=True)
 df['cleaned_dirty_cats'] = df['dirty_cats'].replace(mapping)
