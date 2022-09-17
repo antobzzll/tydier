@@ -42,16 +42,16 @@ def find_inconsistent_categories(dirty_series: pd.Series,
                     tofix_ls.append(tofix)
                     cat_ls.append(cat)
                     match_ratio_charbychar_ls.append(
-                        str_match_ratio(tofix, cat, case_sensitive=False,
-                                        method='charbychar'))
+                        match_ratio(tofix, cat, case_sensitive=False,
+                                    method='charbychar'))
 
                     match_ratio_common_ls.append(
-                        str_match_ratio(tofix, cat, case_sensitive=False,
-                                        method='commonchars'))
+                        match_ratio(tofix, cat, case_sensitive=False,
+                                    method='commonchars'))
 
                     match_ratio_sliceeach_ls.append(
-                        str_match_ratio(tofix, cat, case_sensitive=False,
-                                        method='sliceeach2'))
+                        match_ratio(tofix, cat, case_sensitive=False,
+                                    method='sliceeach2'))
 
                 res = pd.DataFrame(
                     {'tofix': tofix_ls, 'cat': cat_ls,
