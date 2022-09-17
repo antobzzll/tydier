@@ -10,7 +10,7 @@ $ pip install dfcleaner
 
 ## Usage
 
-- TODO
+For usage examples please check the [example notebook](./docs/example.ipynb).
 
 ## Contributing
 

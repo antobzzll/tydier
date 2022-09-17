@@ -3,6 +3,7 @@ from .strings import *
 
 
 def categorical_variables(dataframe: pd.DataFrame, display=False):
+
     cat_vars = {k: dataframe[k].unique()
                 for k in dataframe.columns
                 if dataframe[k].dtype in ["object", "category"]}
