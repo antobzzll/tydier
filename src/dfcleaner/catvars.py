@@ -29,12 +29,32 @@ def categorical_variables(dataframe: pd.DataFrame,
         return cat_vars
 
 
-def find_inconsistent_categories(dirty_series: pd.Series,
-                                 clean_categories: pd.Series,
+def find_inconsistent_categories(dirty_series: list | pd.Series,
+                                 clean_categories: list | pd.Series,
                                  mapping_dict: bool = False,
-                                 verbose: bool = False):
+                                 verbose: bool = False) -> list | dict | None:
+    """Find inconsistent categorical values in a `pd.Series` by checking it 
+    against a correct list of permitted parameters.
 
+    Args:
+        dirty_series (list | pd.Series): categorical variable column to check
+        against `clean_categories`.
+        clean_categories (list | pd.Series): set of clean and permitted options
+        for the categorical variable.
+        mapping_dict (bool, optional): dictionary of possible replacements for 
+        incorrect values found.
+        verbose (bool, optional): prints out analysis and selection process of
+        replacement candidates for incorrent category values. 
+
+    Returns:
+        list | dict | None: `list` of different categories, or `dict` of
+        mapping of possible replacements. `None` if there are no differences.
+    """
     diff = list(set(dirty_series).difference(clean_categories))
+
+    if verbose:
+        print("Categorical variables to fix: ")
+        print(diff)
 
     if diff:
 
@@ -73,8 +93,6 @@ def find_inconsistent_categories(dirty_series: pd.Series,
                     res['match_ratio_sliceeach'] + res['match_ratio_common']
 
                 if verbose:
-                    print("Categorical variables to fix: ")
-                    print(diff)
                     print(res)
 
                 max_ratio = res['match_ratio'].max()
