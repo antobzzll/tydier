@@ -1,7 +1,6 @@
 # tydier
 
 `tydier` is a Python package that facilitates data cleaning and wrangling operations on `pandas` dataframes.
-**Please note that `tydier` is still in its early development phase; Stay tuned, or feel free to contribute to speed up the development process!**
 
 ## Installation
 
@@ -11,7 +10,29 @@ $ pip install tydier
 
 ## Usage
 
-For usage examples please check the [example notebook](https://github.com/antobzzll/tydier/blob/dev/docs/example.ipynb).
+For complete usage examples please check the [example notebook](https://github.com/antobzzll/tydier/blob/dev/docs/example.ipynb).
+
+### Automatically identify and fix incorrect categorical variable values
+
+```python
+from tydier import catvars as catvars # for methods operating on categorical variables 
+import pandas as pd
+
+dirty_cats = ['monday', 'Tusday', 'Wednesday', 'thurda', 'Firday', 'saty', 'Sunday']
+clean_cats = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+
+df = pd.DataFrame({'dirty_cats': dirty_cats, 'clean_cats': clean_cats})
+
+catvars.find_inconsistent_categories(dirty_cats, clean_cats, mapping_dict=True)
+```
+Result:
+```
+{'monday': 'Monday',
+ 'Firday': 'Friday',
+ 'thurda': 'Thursday',
+ 'Tusday': 'Tuesday',
+ 'saty': 'Saturday'}
+```
 
 ## Contributing
 
