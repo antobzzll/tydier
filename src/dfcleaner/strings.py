@@ -2,10 +2,10 @@ import pandas
 
 
 def match_ratio(str1: str, str2: str, method: str,
-                    case_sensitive: bool = False) -> float:
+                case_sensitive: bool = False) -> float:
     """Function that provides different methods for comparing two given 
     strings and return a match ratio.
-    
+
     Args:
         str1 (str): string to be compared.
         str2 (str): string to be compared.
@@ -48,7 +48,7 @@ def match_ratio(str1: str, str2: str, method: str,
         len1 = len(str1)
         len2 = len(str2)
         max_len = len1 if len1 > len2 else len2
-        
+
         s1 = set(str1)
         s2 = set(str2)
         common_chars = s1 & s2
@@ -61,8 +61,8 @@ def match_ratio(str1: str, str2: str, method: str,
         except ValueError:
             raise ValueError("Invalid `each` argument.")
 
-        grouped1 = _rec_slice_str(str1, each)
-        grouped2 = _rec_slice_str(str2, each)
+        grouped1 = slice(str1, each)
+        grouped2 = slice(str2, each)
         longest = grouped1 if grouped1 > grouped2 else grouped2
 
         matching_chunks = []
@@ -122,24 +122,38 @@ def remove_chars(
                          "str | list | tuple | pandas.Series")
 
 
-def _rec_slice_str(string: str, each: int) -> list:  # used for str_match_ratio sliceeach
-    length = len(string)
+def slice(target: str, chunk_size: int) -> list:  # used for match_ratio sliceeach
+    """Returns a `target` string subdivided in chunks (list), 
+    according to `chunk_size` variable.
+
+    Args:
+        target (str): target string to be subdivided in chunks.
+        chunk_size (int): chunk size (in number of characters).
+
+    Raises:
+        ValueError: if `chunk_size` > lenght of target string
+        ValueError: if `chunk_size` < 2
+
+    Returns:
+        list: list of chunks (target string subdivided)
+    """
+    length = len(target)
     positions = length - 1
 
-    if each > length:
-        raise ValueError(f"Invalid each number. Max allowed for provided "
-                         f"string is {length}")
-    if each < 2:
-        raise ValueError(f"Invalid each number. Min allowed is 2")
+    if chunk_size > length:
+        raise ValueError(f"Invalid `chunk_size` int. Maximum allowed size"
+                         f"for provided target string is {length}")
+    if chunk_size < 2:
+        raise ValueError(f"Invalid `chunk_size` int. Min allowed is 2")
 
     start = 0
-    end = each
-    res = list()
+    end = chunk_size
+    chunks = list()
     for _ in range(positions):
-        chunk = string[start:end]
-        if len(chunk) == each:
-            res.append(chunk)
+        chunk = target[start:end]
+        if len(chunk) == chunk_size:
+            chunks.append(chunk)
             start += 1
             end += 1
 
-    return res
+    return chunks
