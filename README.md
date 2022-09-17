@@ -1,14 +1,13 @@
 # tydier
 
 `tydier` is a Python package that facilitates data cleaning and wrangling operations on `pandas` dataframes.
+**Please note that `tydier` is still in its early development phase; Stay tuned, or feel free to contribute to speed up the development process!**
 
 ## Installation
 
-`tydier` is still in its early development phase; a first version has not been released yet. Please stay tuned ... or feel free to contribute to speed up the release process!
-
-<!-- ```bash
+```bash
 $ pip install tydier
-``` -->
+```
 
 ## Usage
 
@@ -20,7 +19,7 @@ Interested in contributing? Check out the [contributing guidelines](https://gith
 
 ## License
 
-`tydier` was created by Antonio Buzzelli. It is licensed under the terms of the MIT license.
+`tydier` was created by [Antonio Buzzelli](https://github.com/antobzzll). It is licensed under the terms of the MIT license.
 
 ## Credits
 
