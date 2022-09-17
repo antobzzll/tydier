@@ -2,8 +2,20 @@ import pandas as pd
 from .strings import *
 
 
-def categorical_variables(dataframe: pd.DataFrame, display=False):
+def categorical_variables(dataframe: pd.DataFrame,
+                          display: bool = False) -> dict:
+    """Retrieves a `pandas.DataFrame`'s categorical variables 
+    and their unique values.
 
+    Args:
+        dataframe (pd.DataFrame): target `pandas.DataFrame`.
+        display (bool, optional): if set to `True` prints out dataframe's 
+        categorical variables and their unique values. Defaults to `False`.
+
+    Returns:
+        dict: dictionary of categorical variables and their unique values
+        (only if `display` is set to `False`).
+    """
     cat_vars = {k: dataframe[k].unique()
                 for k in dataframe.columns
                 if dataframe[k].dtype in ["object", "category"]}
@@ -13,8 +25,6 @@ def categorical_variables(dataframe: pd.DataFrame, display=False):
         for k, v in cat_vars.items():
             n += 1
             print(f"({n}) {k} | {len(v)} unique values:\n{v}\n")
-
-        return cat_vars
     else:
         return cat_vars
 
