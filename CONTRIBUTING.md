@@ -40,10 +40,10 @@ If you are proposing a feature:
 
 ## Get Started!
 
-Ready to contribute? Here's how to set up `dfcleaner` for local development.
+Ready to contribute? Here's how to set up `tydier` for local development.
 
-1. Download a copy of `dfcleaner` locally.
-2. Install `dfcleaner` using `poetry`:
+1. Download a copy of `tydier` locally.
+2. Install `tydier` using `poetry`:
 
     ```console
     $ poetry install
@@ -69,5 +69,5 @@ Before you submit a pull request, check that it meets these guidelines:
 
 ## Code of Conduct
 
-Please note that the `dfcleaner` project is released with a
+Please note that the `tydier` project is released with a
 Code of Conduct. By contributing to this project you agree to abide by its terms.

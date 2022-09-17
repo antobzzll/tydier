@@ -6,7 +6,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = u"dfcleaner"
+project = u"tydier"
 copyright = u"2022, Antonio Buzzelli"
 author = u"Antonio Buzzelli"
 

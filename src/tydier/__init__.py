@@ -1,5 +1,5 @@
 # read version from installed package
 from importlib.metadata import version
-__version__ = version("dfcleaner")
+__version__ = version("tydier")
 
-# from .dfcleaner import *
+# from .tydier import *

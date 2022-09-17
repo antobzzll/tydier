@@ -4,4 +4,4 @@
 
 ## v0.1.0 (15/09/2022)
 
-- First release of `dfcleaner`!
+- First release of `tydier`!

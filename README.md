@@ -1,13 +1,13 @@
-# dfcleaner
+# tydier
 
-`dfcleaner` is a Python package that facilitates data cleaning and wrangling operations on `pandas` dataframes.
+`tydier` is a Python package that facilitates data cleaning and wrangling operations on `pandas` dataframes.
 
 ## Installation
 
-`dfcleaner` is still in its early development phase; a first version has not been released yet. Please stay tuned ... or feel free to contribute to speed up the release process!
+`tydier` is still in its early development phase; a first version has not been released yet. Please stay tuned ... or feel free to contribute to speed up the release process!
 
 <!-- ```bash
-$ pip install dfcleaner
+$ pip install tydier
 ``` -->
 
 ## Usage
@@ -20,8 +20,8 @@ Interested in contributing? Check out the [contributing guidelines](CONTRIBUTING
 
 ## License
 
-`dfcleaner` was created by Antonio Buzzelli. It is licensed under the terms of the MIT license.
+`tydier` was created by Antonio Buzzelli. It is licensed under the terms of the MIT license.
 
 ## Credits
 
-`dfcleaner` was created with [`cookiecutter`](https://cookiecutter.readthedocs.io/en/latest/) and the `py-pkgs-cookiecutter` [template](https://github.com/py-pkgs/py-pkgs-cookiecutter).
+`tydier` was created with [`cookiecutter`](https://cookiecutter.readthedocs.io/en/latest/) and the `py-pkgs-cookiecutter` [template](https://github.com/py-pkgs/py-pkgs-cookiecutter).

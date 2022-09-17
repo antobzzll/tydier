@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "dfcleaner"
+name = "tydier"
 version = "0.1.0"
 description = "Python package for cleaning and manipulating data."
 authors = ["Antonio Buzzelli"]

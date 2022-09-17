@@ -9,7 +9,7 @@ if "%SPHINXBUILD%" == "" (
 )
 set SOURCEDIR=.
 set BUILDDIR=_build
-set SPHINXPROJ=dfcleaner
+set SPHINXPROJ=tydier
 
 if "%1" == "" goto help
 
