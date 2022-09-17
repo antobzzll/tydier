@@ -1,6 +1,23 @@
 import pandas as pd
 from .strings import *
 
+
+def categorical_variables(dataframe: pd.DataFrame, display=False):
+    cat_vars = {k: dataframe[k].unique()
+                for k in dataframe.columns
+                if dataframe[k].dtype in ["object", "category"]}
+
+    if display:
+        n = 0
+        for k, v in cat_vars.items():
+            n += 1
+            print(f"({n}) {k} | {len(v)} unique values:\n{v}\n")
+
+        return cat_vars
+    else:
+        return cat_vars
+
+
 def find_inconsistent_categories(dirty_series: pd.Series,
                                  clean_categories: pd.Series,
                                  mapping_dict: bool = False,

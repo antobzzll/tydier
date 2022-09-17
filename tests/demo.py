@@ -41,3 +41,6 @@ mapping = catvars.find_inconsistent_categories(dirty_cats, clean_cats,
 print(mapping)
 df['adj_cats'] = df['dirty_cats'].replace(mapping)
 print(df)
+
+
+catvars.categorical_variables(df, display=True)

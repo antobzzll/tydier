@@ -1,9 +1,3 @@
-def remove_chars(obj_series, chars: list):
-    for c in chars:
-        obj_series = obj_series.str.replace(c, '')
-    return obj_series
-
-
 def str_match_ratio(str1: str, str2: str, method: str,
                     case_sensitive: bool = False):
 
@@ -54,6 +48,12 @@ def str_match_ratio(str1: str, str2: str, method: str,
 
     else:
         raise ValueError("Invalid method.")
+
+
+def remove_chars(obj_series, chars: list):
+    for c in chars:
+        obj_series = obj_series.str.replace(c, '')
+    return obj_series
 
 
 def _rec_slice_str(str1, each):  # used for str_match_ratio sliceeach
