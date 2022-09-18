@@ -1,5 +1,7 @@
 import pandas as pd
 from .strings import *
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
 
 
 def categorical_variables(dataframe: pd.DataFrame,
@@ -29,7 +31,7 @@ def categorical_variables(dataframe: pd.DataFrame,
         return cat_vars
 
 
-def find_inconsistent_categories(dirty_series: list | pd.Series,
+def inconsistent_categories(dirty_series: list | pd.Series,
                                  clean_categories: list | pd.Series,
                                  mapping_dict: bool = False,
                                  verbose: bool = False) -> list | dict | None:

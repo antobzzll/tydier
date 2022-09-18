@@ -1,10 +1,12 @@
 import pandas
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
 
 
 def match_ratio(str1: str, str2: str, method: str,
                 case_sensitive: bool = False) -> float:
     """Function that provides different methods for comparing two given 
-    strings and return a match ratio.
+    strings and returns a match ratio.
 
     Args:
         str1 (str): string to be compared.
@@ -83,7 +85,7 @@ def remove_chars(
     from a target variable of type `str`, `list`, `tuple`, or `pandas.Series`.
 
     Args:
-        target_vector (str | list | tuple | pandas.Series): target variable.
+        target (str | list | tuple | pandas.Series): target variable.
         chars (list): list of unwanted characters to be removed from the target
         variable.
 
@@ -114,15 +116,15 @@ def remove_chars(
 
     elif type(target) is pandas.Series:
         for c in chars:
-            clean_vector = target.str.replace(c, '')
-        return clean_vector
+            target = target.str.replace(c, '')
+        return target
 
     else:
         raise ValueError("`target` must be of type "
                          "str | list | tuple | pandas.Series")
 
 
-def slice(target: str, chunk_size: int) -> list:  # used for match_ratio sliceeach
+def slice(target: str, chunk_size: int) -> list: # used for match_ratio sliceeach
     """Returns a `target` string subdivided in chunks (list), 
     according to `chunk_size` variable.
 
