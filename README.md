@@ -26,7 +26,7 @@ clean_cats = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
 
 df = pd.DataFrame({'dirty_cats': dirty_cats, 'clean_cats': clean_cats})
 
-catvars.find_inconsistent_categories(dirty_cats, clean_cats, mapping_dict=True)
+catvars.inconsistent_categories(dirty_cats, clean_cats, mapping_dict=True)
 ```
 ```
 {'monday': 'Monday',
@@ -37,7 +37,7 @@ catvars.find_inconsistent_categories(dirty_cats, clean_cats, mapping_dict=True)
 ```
 Passing it to `pd.Series.replace()` will automatically replace inconsistent values with the correct predefined ones:
 ```python
-mapping = catvars.find_inconsistent_categories(dirty_cats, clean_cats, mapping_dict=True)
+mapping = catvars.inconsistent_categories(dirty_cats, clean_cats, mapping_dict=True)
 df['cleaned_dirty_cats'] = df['dirty_cats'].replace(mapping)
 df
 ```
