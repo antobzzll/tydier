@@ -15,7 +15,7 @@ $ pip install tydier
 
 For complete usage examples please check the [example notebook](https://github.com/antobzzll/tydier/blob/dev/docs/example.ipynb).
 
-### Automatically **identify and fix** incorrect categorical variable values
+### Use `tydier` to automatically **identify and fix incorrect categorical variable values**
 
 ```python
 from tydier import catvars as catvars # for methods operating on categorical variables 
@@ -51,7 +51,7 @@ df
 | saty | Saturday | Saturday|
 | Sunday | Sunday | Sunday|
 
-### Automatically transform into `float` a **currency `string` variable**, containing symbols and inconsistent spaces
+### Use `tydier` to automatically transform into `float` a **currency `string` variable**, containing symbols and inconsistent spaces
 ```python
 prices = pd.Series([' $50,    00', '30, 00€'])
 print(numvars.currency_to_float(prices))
