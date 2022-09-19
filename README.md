@@ -66,7 +66,7 @@ dtype: float64
 
 **Found a bug?** Please report it [here](https://github.com/antobzzll/tydier/issues).
 
-**Interested in contributing?** Check out the [contributing guidelines](https://github.com/antobzzll/tydier/blob/dev/CONTRIBUTING.md). Please note that this project is released with a [Code of Conduct](https://github.com/antobzzll/tydier/blob/dev/CONDUCT.md). By contributing to this project, you agree to abide by its terms.
+**Interested in contributing?** Check out what's on the [TODO list](https://github.com/antobzzll/tydier/blob/dev/TODO.md) and the [contributing guidelines](https://github.com/antobzzll/tydier/blob/dev/CONTRIBUTING.md). Please note that this project is released with a [Code of Conduct](https://github.com/antobzzll/tydier/blob/dev/CONDUCT.md). By contributing to this project, you agree to abide by its terms.
 
 ## License
 
