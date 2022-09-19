@@ -2,6 +2,8 @@
 
 `tydier` is a Python package that facilitates data cleaning and wrangling operations on `pandas` dataframes.
 
+`tydier`'s last version is `0.1.1`. Please refer to [CHANGELOG.md](https://github.com/antobzzll/tydier/blob/dev/CHANGELOG.md) for details on updates.
+
 ## Installation
 
 ```bash
@@ -32,7 +34,7 @@ catvars.find_inconsistent_categories(dirty_cats, clean_cats, mapping_dict=True)
  'Tusday': 'Tuesday',
  'saty': 'Saturday'}
 ```
-Passing it to `pd.Series.replace()` to automatically replace inconsistent values with the correct predefined ones:
+Passing it to `pd.Series.replace()` will automatically replace inconsistent values with the correct predefined ones:
 ```python
 mapping = catvars.find_inconsistent_categories(dirty_cats, clean_cats, mapping_dict=True)
 df['cleaned_dirty_cats'] = df['dirty_cats'].replace(mapping)
@@ -54,14 +56,14 @@ prices = pd.Series([' $50,    00', '30, 00€'])
 print(numvars.currency_to_float(prices))
 ```
 ```
-0    50.00
-1    30.00
-dtype: object
+0    50.0
+1    30.0
+dtype: float64
 ```
 
 ## Contributing
 
-Interested in contributing? Check out the [contributing guidelines](https://github.com/antobzzll/tydier/blob/dev/CONTRIBUTING.md). Please note that this project is released with a Code of Conduct. By contributing to this project, you agree to abide by its terms.
+Interested in contributing? Check out the [contributing guidelines](https://github.com/antobzzll/tydier/blob/dev/CONTRIBUTING.md). Please note that this project is released with a [Code of Conduct](https://github.com/antobzzll/tydier/blob/dev/CONDUCT.md). By contributing to this project, you agree to abide by its terms.
 
 ## License
 
@@ -69,4 +71,4 @@ Interested in contributing? Check out the [contributing guidelines](https://gith
 
 ## Credits
 
-`tydier` was created with [`cookiecutter`](https://cookiecutter.readthedocs.io/en/latest/) and the `py-pkgs-cookiecutter` [template](https://github.com/py-pkgs/py-pkgs-cookiecutter).
+`tydier` was created with [`cookiecutter`](https://cookiecutter.readthedocs.io/en/latest/) and the [`py-pkgs-cookiecutter` template](https://github.com/py-pkgs/py-pkgs-cookiecutter).

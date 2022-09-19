@@ -125,7 +125,7 @@ def remove_chars(
 
 
 def slice(target: str, chunk_size: int) -> list: # used for match_ratio sliceeach
-    """Returns a `target` string subdivided in chunks (list), 
+    """Returns a `target` string subdivided in chunks (in `list` type), 
     according to `chunk_size` variable.
 
     Args:
