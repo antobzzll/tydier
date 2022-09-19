@@ -107,23 +107,9 @@ def remove_chars(
         return target
 
     elif type(target) is list:
-        # clean_vector = []
-        # for i in target:
-        #     for c in chars:
-        #         i = i.replace(c, '')
-        #     clean_vector.append(i)
-        # return clean_vector
-
         return list(map(_iter_remove, target))
 
     elif type(target) is tuple:
-        # clean_vector = []
-        # for i in target:
-        #     for c in chars:
-        #         i = i.replace(c, '')
-        #     clean_vector.append(i)
-        # return tuple(clean_vector)
-
         return tuple(map(_iter_remove, target))
 
     elif type(target) is pandas.Series:
