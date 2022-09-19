@@ -1,3 +1,6 @@
+# This module is part of the `tydier` project. Please find more information
+# at https://github.com/antobzzll/tydier
+
 import pandas
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
@@ -93,26 +96,35 @@ def remove_chars(
         [str | list | tuple | set | pandas.Series]: cleaned target variable.
     """
 
+    def _iter_remove(substring, chars=chars):
+        for c in chars:
+            substring = substring.replace(c, '')
+        return substring
+
     if type(target) is str:
         for c in chars:
             target = target.replace(c, '')
         return target
 
     elif type(target) is list:
-        clean_vector = []
-        for i in target:
-            for c in chars:
-                i = i.replace(c, '')
-            clean_vector.append(i)
-        return clean_vector
+        # clean_vector = []
+        # for i in target:
+        #     for c in chars:
+        #         i = i.replace(c, '')
+        #     clean_vector.append(i)
+        # return clean_vector
+
+        return list(map(_iter_remove, target))
 
     elif type(target) is tuple:
-        clean_vector = []
-        for i in target:
-            for c in chars:
-                i = i.replace(c, '')
-            clean_vector.append(i)
-        return tuple(clean_vector)
+        # clean_vector = []
+        # for i in target:
+        #     for c in chars:
+        #         i = i.replace(c, '')
+        #     clean_vector.append(i)
+        # return tuple(clean_vector)
+
+        return tuple(map(_iter_remove, target))
 
     elif type(target) is pandas.Series:
         for c in chars:
@@ -124,7 +136,7 @@ def remove_chars(
                          "str | list | tuple | pandas.Series")
 
 
-def slice(target: str, chunk_size: int) -> list: # used for match_ratio sliceeach
+def slice(target: str, chunk_size: int) -> list:  # used for match_ratio sliceeach
     """Returns a `target` string subdivided in chunks (in `list` type), 
     according to `chunk_size` variable.
 

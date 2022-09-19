@@ -1,5 +1,8 @@
 # Changelog
 
+<!-- - Optimized 'strings.remove_chars()' with `map()`
+-  -->
+
 ## v0.1.1 (19/09/2022)
 
 - Added `numvars.currency_to_float()` method

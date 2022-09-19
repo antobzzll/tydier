@@ -2,7 +2,7 @@
 
 ## New functionalities
 
-- Add to `numvars.currency_to_float()` method a function to create a separate column for currency symbols.
+- Add to `numvars.currency_to_float()` method a function that creates a separate column for currency symbols.
 
 ## Optimization
 
