@@ -2,7 +2,8 @@
 
 `tydier` is a Python package that facilitates data cleaning and wrangling operations on `pandas` dataframes.
 
-`tydier`'s last version is `0.1.1`. Please refer to [CHANGELOG.md](https://github.com/antobzzll/tydier/blob/dev/CHANGELOG.md) for details on updates.
+- Project repo hosted on [GitHub](https://github.com/antobzzll/tydier).
+- Last version is [`0.1.1`](https://pypi.org/project/tydier/). Please refer to [CHANGELOG.md](https://github.com/antobzzll/tydier/blob/dev/CHANGELOG.md) for details on updates.
 
 ## Installation
 
