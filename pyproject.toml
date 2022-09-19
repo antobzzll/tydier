@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "tydier"
 version = "0.1.1"
-description = "Python package for easy data cleaning and wrangling operations."
+description = "Python package for easy data cleaning operations."
 authors = ["Antonio Buzzelli"]
 license = "MIT"
 readme = "README.md"
