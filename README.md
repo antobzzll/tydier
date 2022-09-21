@@ -18,7 +18,7 @@ For complete usage examples please check the [example notebook](https://github.c
 ### Use `tydier` to automatically **identify and fix incorrect categorical variable values**
 
 ```python
-from tydier import catvars as catvars # for methods operating on categorical variables 
+import tydier as ty
 import pandas as pd
 
 dirty_cats = ['monday', 'Tusday', 'Wednesday', 'thurda', 'Firday', 'saty', 'Sunday']
@@ -26,7 +26,7 @@ clean_cats = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
 
 df = pd.DataFrame({'dirty_cats': dirty_cats, 'clean_cats': clean_cats})
 
-catvars.inconsistent_categories(dirty_cats, clean_cats, mapping_dict=True)
+ty.inconsistent_categories(dirty_cats, clean_cats, mapping_dict=True)
 ```
 ```
 {'monday': 'Monday',
@@ -37,7 +37,7 @@ catvars.inconsistent_categories(dirty_cats, clean_cats, mapping_dict=True)
 ```
 Passing it to `pd.Series.replace()` will automatically replace inconsistent values with the correct predefined ones:
 ```python
-mapping = catvars.inconsistent_categories(dirty_cats, clean_cats, mapping_dict=True)
+mapping = ty.inconsistent_categories(dirty_cats, clean_cats, mapping_dict=True)
 df['cleaned_dirty_cats'] = df['dirty_cats'].replace(mapping)
 df
 ```
@@ -54,7 +54,7 @@ df
 ### Use `tydier` to automatically transform into `float` a **currency `string` variable**, containing symbols and inconsistent spaces
 ```python
 prices = pd.Series([' $50,    00', '30, 00€'])
-print(numvars.currency_to_float(prices))
+print(ty.currency_to_float(prices))
 ```
 ```
 0    50.0

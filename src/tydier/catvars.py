@@ -1,8 +1,9 @@
 # This module is part of the `tydier` project. Please find more information
 # at https://github.com/antobzzll/tydier
 
-import pandas as pd
 from .strings import *
+from .utilities import *
+import pandas as pd
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
@@ -35,9 +36,9 @@ def categorical_variables(dataframe: pd.DataFrame,
 
 
 def inconsistent_categories(dirty_series: list | pd.Series,
-                                 clean_categories: list | pd.Series,
-                                 mapping_dict: bool = False,
-                                 verbose: bool = False) -> list | dict | None:
+                            clean_categories: list | pd.Series,
+                            mapping_dict: bool = False,
+                            verbose: bool = False) -> list | dict | None:
     """Find inconsistent categorical values in a `pd.Series` by checking it 
     against a correct list of permitted parameters.
 

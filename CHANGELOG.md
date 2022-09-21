@@ -1,7 +1,9 @@
 # Changelog
 
-<!-- - Optimized 'strings.remove_chars()' with `map()`
--  -->
+## v0.1.2
+
+<!-- - Optimized 'strings.remove_chars()' with `map()` vectorization.
+-  Changed import statement. Now it's `import tydier as ty`, and all methods are accessible from the main module.-->
 
 ## v0.1.1 (19/09/2022)
 
