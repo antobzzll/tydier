@@ -3,7 +3,7 @@
 `tydier` is a Python package that facilitates data cleaning and wrangling operations on `pandas` dataframes.
 
 - Project repo hosted on [GitHub](https://github.com/antobzzll/tydier).
-- Last version is [`0.1.2`](https://pypi.org/project/tydier/). Please refer to [CHANGELOG.md](https://github.com/antobzzll/tydier/blob/dev/CHANGELOG.md) for details on updates.
+- Last version is [`0.1.3`](https://pypi.org/project/tydier/). Please refer to [CHANGELOG.md](https://github.com/antobzzll/tydier/blob/dev/CHANGELOG.md) for details on updates.
 
 ## Installation
 
@@ -11,9 +11,9 @@
 $ pip install tydier
 ```
 
-## Usage
+## Why use `tydier`?
 
-For complete usage examples please check the [example notebook](https://github.com/antobzzll/tydier/blob/dev/docs/example.ipynb).
+
 
 ### Use `tydier` to automatically **identify and fix incorrect categorical variable values**
 
@@ -26,16 +26,12 @@ clean_cats = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
 
 df = pd.DataFrame({'dirty_cats': dirty_cats, 'clean_cats': clean_cats})
 
-ty.inconsistent_categories(dirty_cats, clean_cats, mapping_dict=True)
+ty.inconsistent_categories(dirty_cats, clean_cats)
 ```
 ```
-{'monday': 'Monday',
- 'Firday': 'Friday',
- 'thurda': 'Thursday',
- 'Tusday': 'Tuesday',
- 'saty': 'Saturday'}
+['Firday', 'Tusday', 'thurda', 'saty', 'monday']
 ```
-Passing it to `pd.Series.replace()` will automatically replace inconsistent values with the correct predefined ones:
+Setting `mapping_dict` to `True`, will return a dictionary which we can pass to `pandas.Series.replace()` to automatically replace inconsistent categorical values in a `pandas.Series`:
 ```python
 mapping = ty.inconsistent_categories(dirty_cats, clean_cats, mapping_dict=True)
 df['cleaned_dirty_cats'] = df['dirty_cats'].replace(mapping)
@@ -53,14 +49,31 @@ df
 
 ### Use `tydier` to automatically transform into `float` a **currency `string` variable**, containing symbols and inconsistent spaces
 ```python
-prices = pd.Series([' $50,    00', '30, 00€'])
-print(ty.currency_to_float(prices))
+prices = ["  23,000.12 $", "123,000.56USD", "$45", "$ 56,90"]
+
+v, c = ty.currency_to_float(prices)
+print("Values:")
+print(v)
+print("Currencies:")
+print(c)
 ```
 ```
-0    50.0
-1    30.0
-dtype: float64
+Values:
+[23000.12, 123000.56, 45.0, 56.9]
+Currencies:
+['$', 'USD', '$', '$']
 ```
+
+### Use `tydier` to automatically **clean column names**
+```python
+df.columns = ['    Dirty  categorieS', 'Clean Categories']
+df.columns = ty.clean_col_names(df.columns)
+print(df.columns)
+```
+```
+Index(['dirty_categories', 'clean_categories'], dtype='object')
+```
+For complete usage examples please check the [example notebook](https://github.com/antobzzll/tydier/blob/dev/docs/example.ipynb).
 
 ## Contributing
 

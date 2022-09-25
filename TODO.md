@@ -1,15 +1,14 @@
 # TODO
 
-## New functionalities
-
-- Add to `numvars.currency_to_float()` method a function that creates a separate column for currency symbols.
-- Add more variables info to `catvars.categorical_variables()`.
-- Add a private method to print tables (for `catvars.categorical_variables()`).
+<!-- ## New functionalities -->
 
 ## Improvements
 
-- Improve `catvars.categorical_variables()` printing.
+- In `numvars.currency_to_float()`, link symbols and currency codes for consistency.
+- Add more variables info to `catvars.categorical_variables()`.
+- `catvars.categorical_variables()` should return a `pd.Dataframe` summary.
+- Add support for `numpy.array` to methods.
 
-## Optimization
+<!-- ## Optimization
 
-- Improve performances with vectorized operations.
+- Improve performances with vectorized operations. -->

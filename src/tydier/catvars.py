@@ -2,7 +2,7 @@
 # at https://github.com/antobzzll/tydier
 
 from .strings import *
-from .utilities import *
+
 import pandas as pd
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)

@@ -5,7 +5,7 @@
 from importlib.metadata import version
 __version__ = version("tydier")
 
-
+from .utilities import *
 from .catvars import *
 from .numvars import *
 from .strings import *
