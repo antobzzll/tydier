@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.1.4 (01/10/2022)
+
+-`utilities.clean_col_names()` now also removes puntuaction marks.
+
 ## v0.1.3 (25/09/2022)
 
 - Added `utilities.clean_col_names()`, a method for cleaning column names in a `pandas.DataFrame`.

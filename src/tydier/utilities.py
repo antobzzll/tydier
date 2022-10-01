@@ -2,7 +2,7 @@
 # at https://github.com/antobzzll/tydier
 
 import pandas as pd
-
+import re
 
 def clean_col_names(df_columns: pd.Index, wlen: int = 0) -> list:
     """Method for cleaning column names of a `pandas.DataFrame`.
@@ -30,6 +30,13 @@ def clean_col_names(df_columns: pd.Index, wlen: int = 0) -> list:
     else:
         def _fix(target: str):
             target = target.lower().split()
-            return '_'.join([str(elem[:wlen] if wlen > 0 else elem) for elem in target])
+            res = []
+            for elem in target:
+                elem = re.sub(r'[^\w]', '', elem)
+                if wlen > 0:
+                    res.append(elem[:wlen])
+                else:
+                    res.append(elem)
+            return '_'.join(res)
 
         return list(map(_fix, df_columns))
