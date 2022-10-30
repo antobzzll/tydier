@@ -1,5 +1,9 @@
 # Changelog
 
+## 
+
+- Fixed a bug in `utilities.clean_col_names()`.
+
 ## v0.1.4 (01/10/2022)
 
 -`utilities.clean_col_names()` now also removes puntuaction marks.
