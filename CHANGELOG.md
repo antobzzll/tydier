@@ -1,8 +1,8 @@
 # Changelog
 
-## 
+<!-- ## 
 
-- Fixed a bug in `utilities.clean_col_names()`.
+- Fixed a bug in `utilities.clean_col_names()`. -->
 
 ## v0.1.4 (01/10/2022)
 
