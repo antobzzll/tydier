@@ -52,7 +52,6 @@ def currency_to_float(
     def _fix(string: str):
         
         # value and currency definitions
-        print(string)
         if type(string) == float:
             raise ValueError(f"{string} not a string")
         

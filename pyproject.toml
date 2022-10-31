@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "tydier"
-version = "0.1.5"
+version = "0.1.6"
 description = "Python package for easy data cleaning operations."
 authors = ["Antonio Buzzelli"]
 license = "MIT"
