@@ -1,9 +1,9 @@
 # Changelog
 
-<!-- ## 
+## v0.1.5 (31/10/2022)
 
-- Fixed a bug in `utilities.clean_col_names()`. 
-- Fixed a bug in `numvars.currency_to_float()`. -->
+- Fixed a bug in `utilities.clean_col_names()`.
+- Fixed a bug in `numvars.currency_to_float()`.
 
 ## v0.1.4 (01/10/2022)
 
