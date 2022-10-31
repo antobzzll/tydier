@@ -52,13 +52,19 @@ def currency_to_float(
     def _fix(string: str):
         
         # value and currency definitions
+        print(string)
+        if type(string) == float:
+            raise ValueError(f"{string} not a string")
+        
         string = string.split()
-
         if len(string) == 1:
             for c in currencies:
-                if c in string[0].upper():
+                if c in string[0].upper(): # check if symbols
                     currency = c
                     value = string[0].upper().replace(currency, '')
+            if not 'value' in locals():
+                currency = ''
+                value = string[0]
         else:
             if string[1].upper() in currencies:
                 currency = string[1].upper()

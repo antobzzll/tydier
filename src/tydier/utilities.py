@@ -33,12 +33,12 @@ def clean_col_names(df_columns: pd.Index, wlen: int = 0) -> list:
             res = []
             for elem in target:
                 elem = re.sub(r'[^\w]', '', elem)
+                
                 if elem:
                     if wlen > 0:
                         res.append(elem[:wlen])
                     else:
                         res.append(elem)
-            print(res)
             return '_'.join(res)
 
         return list(map(_fix, df_columns))
